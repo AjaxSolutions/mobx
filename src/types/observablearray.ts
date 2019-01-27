@@ -39,6 +39,8 @@ export interface IObservableArray<T = any> extends Array<T> {
     clear(): T[]
     replace(newItems: T[]): T[]
     remove(value: T): boolean
+    toJS(): T[]
+    toJSON(): T[]
 }
 
 // In 3.0, change to IArrayDidChange
@@ -152,7 +154,7 @@ class ObservableArrayAdministration
     }
 
     dehanceValues(values: any[]): any[] {
-        if (this.dehancer !== undefined && this.values.length > 0)
+        if (this.dehancer !== undefined && values.length > 0)
             return values.map(this.dehancer) as any
         return values
     }
